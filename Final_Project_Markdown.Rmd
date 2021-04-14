@@ -13,12 +13,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(Rsubread)
+library(readr)
 ```
 
 
 ###Download transcriptome and raw reads
-
+### From the A. l. cowlesi
 ```{r}
+read_csv("https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE129581&format=file&file=GSE129581%5Fbc%5Ftranscriptome%5Fscaffolds%2Ecsv%2Egz") -> d
+
 snake_transciptome <- read.table('https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz', header=TRUE, sep="\t",stringsAsFactors = FALSE)
 
 raw_reads <- read.table('https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE129581&format=file', header=TRUE, sep="\t",stringsAsFactors = FALSE)
@@ -45,13 +48,13 @@ args(align)
 ```
 
 ###Quality Control of reads
-
+###Use qualityScores from Rsubread library
 ```{r}
-
-
+qs_aligned_reads <- qualityScores(filename="aligned_reads",nreads=100)
+head(qs_aligned_reads)
 ```
 
-###Filter for Genes of interest
+###Filter for genes of interest
 
 ```{r}
 
