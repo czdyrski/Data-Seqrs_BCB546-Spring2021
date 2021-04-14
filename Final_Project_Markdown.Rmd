@@ -9,6 +9,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+###Load in librarys
+
+```{r}
+library(Rsubread)
+```
+
 
 ###Download transcriptome and raw reads
 
@@ -16,24 +22,47 @@ knitr::opts_chunk$set(echo = TRUE)
 snake_transciptome <- read.table('https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz', header=TRUE, sep="\t",stringsAsFactors = FALSE)
 
 raw_reads <- read.table('https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE129581&format=file', header=TRUE, sep="\t",stringsAsFactors = FALSE)
-
 ```
 
 
 ###Look at dimensions of the two files
 
 ```{r}
+head(snake_transciptome)
 dim(snake_transciptome)
 str(snake_transciptome)
 
+head(raw_reads)
 dim(raw_reads)
 str(raw_reads)
-
 ```
 
 
+###Align the reads to the transcriptome
+
+```{r}
+args(align)
+```
+
+###Quality Control of reads
+
+```{r}
 
 
+```
 
+###Filter for Genes of interest
+
+```{r}
+
+
+```
+
+###Make Heatmap
+
+```{r}
+
+
+```
 
 
