@@ -24,16 +24,13 @@ library(data.table)
 ###Download transcriptome and raw reads
 ### From the A. l. cowlesi
 ```{r}
-useless_test = fread("GSE129581_bc_transcriptome_scaffolds.csv.gz")
-head(useless_test)
-
 raw_transciptome = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz")
-head(raw_transciptome)
+
+raw_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz")
 ```
 
 
 ###Look at dimensions of the two files
-
 ```{r}
 head(raw_transciptome)
 dim(raw_transciptome)
