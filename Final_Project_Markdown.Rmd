@@ -9,12 +9,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-###Load in librarys
-
+###Install packages
 ```{r}
 install.packages('R.utils')
-install.packages('Rsubread')
-library(Rsubread)
+```
+
+###Load in librarys
+```{r}
 library(readr)
 library(data.table)
 ```
@@ -23,30 +24,33 @@ library(data.table)
 ###Download transcriptome and raw reads
 ### From the A. l. cowlesi
 ```{r}
+useless_test = fread("GSE129581_bc_transcriptome_scaffolds.csv.gz")
+head(useless_test)
 
-raw_transciptome = fread("GSE129581_bc_transcriptome_scaffolds.csv.gz")
+raw_transciptome = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz")
 head(raw_transciptome)
-
-read_csv("https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE129581&format=file&file=GSE129581%5Fbc%5Ftranscriptome%5Fscaffolds%2Ecsv%2Egz") -> d
-
-snake_transciptome <- read.table('https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz', header=TRUE, sep="\t",stringsAsFactors = FALSE)
-
-raw_reads <- read.table('https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE129581&format=file', header=TRUE, sep="\t",stringsAsFactors = FALSE)
 ```
 
 
 ###Look at dimensions of the two files
 
 ```{r}
-head(snake_transciptome)
-dim(snake_transciptome)
-str(snake_transciptome)
+head(raw_transciptome)
+dim(raw_transciptome)
+str(raw_transciptome)
 
 head(raw_reads)
 dim(raw_reads)
 str(raw_reads)
 ```
 
+###May need these later
+```{r}
+install.packages('Rsubread')
+library(Rsubread)
+library(readr)
+library(data.table)
+```
 
 ###Align the reads to the transcriptome
 
