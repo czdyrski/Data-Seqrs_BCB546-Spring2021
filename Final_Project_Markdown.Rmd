@@ -31,7 +31,7 @@ raw_assembled_transciptome = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE1
 #File for organoids
 tissue_raw_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Tissue_allPlates.csv.gz")
 
-#File for cell date
+#File for cell data
 raw_cell_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Cellseq2barcodes.csv.gz", quote="")
 ```
 
@@ -65,8 +65,6 @@ buildindex(basename="chr1_mm10",reference="chr1.fa")
 ```{r}
 install.packages('Rsubread')
 library(Rsubread)
-library(readr)
-library(data.table)
 ```
 
 ###Align the reads to the transcriptome
@@ -89,7 +87,7 @@ head(qs_aligned_reads)
 
 ```
 
-###Make Heatmap
+###Make single cell Heatmap
 
 ```{r}
 
