@@ -31,7 +31,7 @@ raw_assembled_transciptome = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE1
 tissue_raw_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Tissue_allPlates.csv.gz")
 
 #File for cell date
-raw_cell_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Cellseq2barcodes.csv.gz")
+raw_cell_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Cellseq2barcodes.csv.gz", quote="")
 ```
 
 ###Look at dimensions of the files
