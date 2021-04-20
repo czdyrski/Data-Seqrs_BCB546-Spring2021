@@ -47,10 +47,10 @@ head(tissue_raw_reads)
 dim(tissue_raw_reads)
 str(tissue_raw_reads)
 
-#Analyze the transcriptome file
-head(raw_reads)
-dim(raw_reads)
-str(raw_reads)
+#Analyze the cell file
+head(raw_cell_reads)
+dim(raw_cell_reads)
+str(raw_cell_reads)
 ```
 
 
