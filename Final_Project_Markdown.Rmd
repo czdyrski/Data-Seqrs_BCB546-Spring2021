@@ -4,25 +4,25 @@ author: "Christopher_Zdyrski"
 date: "4/13/2021"
 output: html_document
 ---
-
+#This file is to make the RNASeq heatmap found in the Post et al. paper figure 2D.
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-###Install packages
+#Install packages
 ```{r}
 install.packages('R.utils')
 ```
 
-###Load in librarys
+#Load in librarys
 ```{r}
 library(readr)
 library(data.table)
 ```
 
-
-###Download transcriptome and raw reads
-### From the A. l. cowlesi
+#Download transcriptome and raw reads
+#From the A. l. cowlesi
+#Decide what files we need
 ```{r}
 raw_transciptome = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz")
 
