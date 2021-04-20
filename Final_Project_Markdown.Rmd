@@ -25,13 +25,13 @@ library(data.table)
 #Decide what files we need
 ```{r}
 #This is the transcriptome we will align too
-raw_transciptome = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz")
+raw_assembled_transciptome = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz")
 
 #File for organoids
 tissue_raw_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Tissue_allPlates.csv.gz")
 
-#File for epithelial tissue
-raw_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Cellseq2barcodes.csv.gz", quote="")
+#File for cell date
+raw_cell_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Cellseq2barcodes.csv.gz")
 ```
 
 ###Look at dimensions of the files
@@ -48,7 +48,6 @@ str(tissue_raw_reads)
 
 #Analyze the transcriptome file
 head(raw_reads)
-tail(raw_reads)
 dim(raw_reads)
 str(raw_reads)
 ```
