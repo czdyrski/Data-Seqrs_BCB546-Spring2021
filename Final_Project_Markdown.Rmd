@@ -4,7 +4,7 @@ author: "Christopher_Zdyrski"
 date: "4/13/2021"
 output: html_document
 ---
-#This file is to make the RNASeq heatmap found in the Post et al. paper figure 2D.
+#This file is to make the RNASeq heatmap found in the Post et al. paper figure S.2F.
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -24,22 +24,42 @@ library(data.table)
 #From the A. l. cowlesi
 #Decide what files we need
 ```{r}
+#This is the transcriptome we will align too
 raw_transciptome = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz")
 
-raw_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz")
+#File for organoids
+tissue_raw_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Tissue_allPlates.csv.gz")
+
+#File for epithelial tissue
+raw_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Cellseq2barcodes.csv.gz", quote="")
 ```
 
-
-###Look at dimensions of the two files
+###Look at dimensions of the files
 ```{r}
+#Analyze the transcriptome file
 head(raw_transciptome)
 dim(raw_transciptome)
 str(raw_transciptome)
 
+#Analyze the tissue raw reads file
+head(tissue_raw_reads)
+dim(tissue_raw_reads)
+str(tissue_raw_reads)
+
+#Analyze the transcriptome file
 head(raw_reads)
+tail(raw_reads)
 dim(raw_reads)
 str(raw_reads)
 ```
+
+
+###Build the index
+```{r}
+buildindex(basename="chr1_mm10",reference="chr1.fa")
+```
+
+
 
 ###May need these later
 ```{r}
