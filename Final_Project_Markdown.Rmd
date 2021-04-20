@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #Install packages
 ```{r}
 install.packages('R.utils')
+install.packages('data.table')
 ```
 
 #Load in librarys
