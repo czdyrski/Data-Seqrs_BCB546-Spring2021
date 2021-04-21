@@ -33,6 +33,19 @@ tissue_raw_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE1
 
 #File for cell data
 raw_cell_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Cellseq2barcodes.csv.gz", quote="")
+
+#Files for organoid plates 5-8
+#File for organoid plate 5
+organoid_plate_5 = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSM3716643_annotation_collapsed_counts_HUB-YP-005.csv.gz", quote="")
+
+#File for organoid plate 6
+organoid_plate_6 = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSM3716644_annotation_collapsed_counts_HUB-YP-006.csv.gz", quote="")
+
+#File for organoid plate 7
+organoid_plate_7 = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSM3716645_annotation_collapsed_counts_HUB-YP-007.csv.gz", quote="")
+
+#File for organoid plate 8
+organoid_plate_8 = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSM3716646_annotation_collapsed_counts_HUB-YP-008.csv.gz", quote="")
 ```
 
 ###Look at dimensions of the files
