@@ -49,6 +49,7 @@ str(tissue_raw_reads)
 
 #Analyze the cell file
 head(raw_cell_reads)
+tail(raw_cell_reads)
 dim(raw_cell_reads)
 str(raw_cell_reads)
 ```
