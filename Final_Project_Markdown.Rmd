@@ -22,6 +22,7 @@ library(data.table)
 ```
 
 #Download transcriptome and tissue raw reads
+#Download single cell raw reads
 #From the A. l. cowlesi
 ```{r}
 #This is the transcriptome we will align too
@@ -60,23 +61,6 @@ dim(tissue_raw_reads)
 str(tissue_raw_reads)
 ```
 
-#Download single cell raw reads
-#From  A. l. cowlesi
-```{r}
-#GSM3716643_annotation_collapsed_counts_HUB-YP-005.csv.gz
-single_cell_plate_5 = fread("XXXXX")
-
-#GSM3716644_annotation_collapsed_counts_HUB-YP-006.csv.gz
-single_cell_plate_6 = fread("XXXXX")
-
-#GSM3716645_annotation_collapsed_counts_HUB-YP-007.csv.gz
-single_cell_plate_7 = fread("XXXXX")
-
-#GSM3716646_annotation_collapsed_counts_HUB-YP-008.csv.gz
-single_cell_plate_8 = fread("XXXXX")
-
-```
-
 ###Look at dimensions of the files
 ```{r}
 #Analyze the cell file
@@ -86,7 +70,7 @@ dim(single_cell_plate_5)
 str(single_cell_plate_5)
 ```
 
-#Maybe merge the files for singel cell plates
+#Maybe merge the files for single cell plates
 ```{r}
 
 ```
@@ -96,14 +80,6 @@ str(single_cell_plate_5)
 ```{r}
 args(align)
 ```
-
-
-
-
-
-
-
-
 
 
 ###Build the index
