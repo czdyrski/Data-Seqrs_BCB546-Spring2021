@@ -53,22 +53,22 @@ fig_two_b <- (ggplot(raw_data, aes(x = Chr_Position)) +
   geom_boxplot(position = "fill") +
   labs(x = "Altitude", y = "Δ Methylation") +
   theme(axis.text.x = element_text(angle = 90)) +
-  ggtitle("Figure 3") +
+  ggtitle("Figure 2b") +
   theme(plot.title = element_text(hjust = 0.5)))
 
 print(fig_2_a)
 pdf("Plots/fig_two_b.pdf")
 ```
 
-#Make Figure 3
+#Make Figure 6
 ```{r}
-fig_three <- (ggplot(raw_data, aes(x = Chr_Position)) +
+fig_six <- (ggplot(raw_data, aes(x = Chr_Position)) +
   geom_boxplot(position = "fill") +
-  labs(x = "Genomic Position", y = "Δ Methylation") +
+  labs(x = "Loss/Gain Position", y = "DMC Density") +
   theme(axis.text.x = element_text(angle = 90)) +
-  ggtitle("Figure 3") +
+  ggtitle("Figure 6, West to East") +
   theme(plot.title = element_text(hjust = 0.5)))
 
-print(fig_2_a)
-pdf("Plots/fig_3.pdf")
+print(fig_six)
+pdf("Plots/fig_6.pdf")
 ```
