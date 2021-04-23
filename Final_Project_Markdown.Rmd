@@ -36,16 +36,15 @@ str(raw_data)
 
 #Make plot with ggplot, shows Heterozygosity across all the groups using the newly merged file
 ```{r}
-Heterozygosity_Across_Groups <- (ggplot(raw_data, aes(x = raw_data$Chr_Position, fill = Mid_Moist)) +
+fig_2_a <- (ggplot(raw_data, aes(x = raw_data$Chr_Position, fill = Mid_Moist)) +
   geom_bar(position = "fill") +
   labs(x = "Group", y = "Proportion") +
   theme(axis.text.x = element_text(angle = 90)) +
   ggtitle("Heterozygosity for all Groups") +
   theme(plot.title = element_text(hjust = 0.5)))
 
-print(Heterozygosity_Across_Groups)
-pdf("Plots/Heterozygosity_Across_Groups.pdf")
-print(Heterozygosity_Across_Groups)
+print(fig_2_a)
+pdf("Plots/fig_2_a.pdf")
 ```
 
 #Make plot 2 aka Figure ###
