@@ -44,6 +44,13 @@ Heterozygosity_Across_Groups <- (ggplot(hom_het_added_column, aes(x = Group, fil
 
 pdf("Plots/Heterozygosity_Across_Groups.pdf")
 print(Heterozygosity_Across_Groups)
+```
+
+#Make plot 2 aka Figure ###
+```{r}
+
+
+
 
 ```
 
