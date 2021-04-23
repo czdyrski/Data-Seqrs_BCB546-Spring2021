@@ -11,48 +11,40 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Install packages
 ```{r}
-install.packages('R.utils')
-install.packages('data.table')
+
 ```
 
 #Load in librarys
 ```{r}
-library(readr)
-library(data.table)
+
 ```
 
-#Download transcriptome and tissue raw reads
-#Download single cell raw reads
-#From the A. l. cowlesi
+#Open data file
 ```{r}
 #This is the transcriptome we will align too
-raw_assembled_transciptome = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_transcriptome-assembly_min500bp.fna.gz")
-
-#File for organoids
-tissue_raw_reads = fread("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129581/suppl/GSE129581_Tissue_allPlates.csv.gz")
-
+raw_data = read.table(Copy)
 ```
 
 ###Look at dimensions of the files
 ```{r}
 #Analyze the transcriptome file
-head(raw_transciptome)
-dim(raw_transciptome)
-str(raw_transciptome)
-
-#Analyze the tissue raw reads file
-head(tissue_raw_reads)
-dim(tissue_raw_reads)
-str(tissue_raw_reads)
+head(raw_data)
+dim(raw_data)
+str(raw_data)
 ```
 
-###Look at dimensions of the files
+#Make plot with ggplot, shows Heterozygosity across all the groups using the newly merged file
 ```{r}
-#Analyze the cell file
-head(single_cell_plate_5)
-tail(single_cell_plate_5)
-dim(single_cell_plate_5)
-str(single_cell_plate_5)
+Heterozygosity_Across_Groups <- (ggplot(hom_het_added_column, aes(x = Group, fill = Heterozygotes)) +
+  geom_bar(position = "fill") +
+  labs(x = "Group", y = "Proportion") +
+  theme(axis.text.x = element_text(angle = 90)) +
+  ggtitle("Heterozygosity for all Groups") +
+  theme(plot.title = element_text(hjust = 0.5)))
+
+pdf("Plots/Heterozygosity_Across_Groups.pdf")
+print(Heterozygosity_Across_Groups)
+
 ```
 
 
