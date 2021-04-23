@@ -17,17 +17,18 @@ knitr::opts_chunk$set(echo = TRUE)
 #Load in librarys
 ```{r}
 library(readxl)
+library(ggplot2)
 ```
 
 #Open data file
 ```{r}
 #This is the transcriptome we will align too
-Copy_of_DMCs_Dryad <- read_excel("Copy of DMCs_Dryad.xlsx")
+raw_data <- read_excel("Copy of DMCs_Dryad.xlsx")
 ```
 
 ###Look at dimensions of the files
 ```{r}
-#Analyze the transcriptome file
+#Analyze the raw_data file
 head(raw_data)
 dim(raw_data)
 str(raw_data)
@@ -35,13 +36,14 @@ str(raw_data)
 
 #Make plot with ggplot, shows Heterozygosity across all the groups using the newly merged file
 ```{r}
-Heterozygosity_Across_Groups <- (ggplot(hom_het_added_column, aes(x = Group, fill = Heterozygotes)) +
+Heterozygosity_Across_Groups <- (ggplot(raw_data, aes(x = raw_data$Chr_Position, fill = Mid_Moist)) +
   geom_bar(position = "fill") +
   labs(x = "Group", y = "Proportion") +
   theme(axis.text.x = element_text(angle = 90)) +
   ggtitle("Heterozygosity for all Groups") +
   theme(plot.title = element_text(hjust = 0.5)))
 
+print(Heterozygosity_Across_Groups)
 pdf("Plots/Heterozygosity_Across_Groups.pdf")
 print(Heterozygosity_Across_Groups)
 ```
