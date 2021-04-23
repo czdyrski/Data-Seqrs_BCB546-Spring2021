@@ -16,13 +16,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Load in librarys
 ```{r}
-
+library(readxl)
 ```
 
 #Open data file
 ```{r}
 #This is the transcriptome we will align too
-raw_data = read.table(Copy)
+Copy_of_DMCs_Dryad <- read_excel("Copy of DMCs_Dryad.xlsx")
 ```
 
 ###Look at dimensions of the files
