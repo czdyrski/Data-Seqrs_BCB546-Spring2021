@@ -34,27 +34,41 @@ dim(raw_data)
 str(raw_data)
 ```
 
-#Make plot with ggplot, shows Heterozygosity across all the groups using the newly merged file
+#Make Figure 2a
 ```{r}
-fig_2_a <- (ggplot(raw_data, aes(x = raw_data$Chr_Position, fill = Mid_Moist)) +
+fig_two_a <- (ggplot(raw_data, aes(x = Chr_Position)) +
   geom_bar(position = "fill") +
-  labs(x = "Group", y = "Proportion") +
+  labs(x = "Altitude", y = "Log10 DMC Count") +
   theme(axis.text.x = element_text(angle = 90)) +
-  ggtitle("Heterozygosity for all Groups") +
+  ggtitle("Figure 2a") +
+  theme(plot.title = element_text(hjust = 0.5)))
+
+print(fig_two_a)
+pdf("Plots/fig_two_a.pdf")
+```
+
+#Make Figure 2b
+```{r}
+fig_two_b <- (ggplot(raw_data, aes(x = Chr_Position)) +
+  geom_boxplot(position = "fill") +
+  labs(x = "Altitude", y = "Δ Methylation") +
+  theme(axis.text.x = element_text(angle = 90)) +
+  ggtitle("Figure 3") +
   theme(plot.title = element_text(hjust = 0.5)))
 
 print(fig_2_a)
-pdf("Plots/fig_2_a.pdf")
+pdf("Plots/fig_two_b.pdf")
 ```
 
-#Make plot 2 aka Figure ###
+#Make Figure 3
 ```{r}
+fig_three <- (ggplot(raw_data, aes(x = Chr_Position)) +
+  geom_boxplot(position = "fill") +
+  labs(x = "Genomic Position", y = "Δ Methylation") +
+  theme(axis.text.x = element_text(angle = 90)) +
+  ggtitle("Figure 3") +
+  theme(plot.title = element_text(hjust = 0.5)))
 
-
-
-
+print(fig_2_a)
+pdf("Plots/fig_3.pdf")
 ```
-
-
-
-
