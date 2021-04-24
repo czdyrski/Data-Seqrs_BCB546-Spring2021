@@ -11,18 +11,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Install packages
 ```{r}
-
+install.packages("tidyverse")
 ```
 
 #Load in librarys
 ```{r}
 library(readxl)
 library(ggplot2)
+library(tidyverse)
 ```
 
 #Open data file
 ```{r}
-#This is the transcriptome we will align too
+#This is the data file we will use
 raw_data <- read_excel("Copy of DMCs_Dryad.xlsx")
 ```
 
@@ -41,7 +42,7 @@ colnames(raw_data)
 dev.new() 
 
 fig_two_a <- (ggplot(data=raw_data, aes(x=pvalue, y=meth.diff)) +
-  geom_bar(stat='identity') +
+  geom_bar(stat='identity', position="fill") +
   labs(x = "Altitude", y = "Log10 DMC Count") +
   ggtitle("Figure 2a") +
   theme(plot.title = element_text(hjust = 0.5)))
@@ -55,7 +56,7 @@ pdf("Plots/fig_two_a.pdf")
 #Make Figure 2b
 ```{r}
 fig_two_b <- (ggplot(raw_data, aes(x = Chr_Position)) +
-  geom_boxplot(position = "fill") +
+  geom_bar(stat='identity') +
   labs(x = "Altitude", y = "Δ Methylation") +
   theme(axis.text.x = element_text(angle = 90)) +
   ggtitle("Figure 2b") +
