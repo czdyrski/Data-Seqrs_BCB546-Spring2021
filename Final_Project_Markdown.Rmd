@@ -48,7 +48,7 @@ colnames(raw_data)
 #For some reason it ws not recognizing column names, may need to use pivot_longer or tidyverse to correctly format data table, but got it plotting stuff
 #Feel free to change anything!
 #
-#
+#NOTES BELOW
 #
 #
 
@@ -56,6 +56,9 @@ colnames(raw_data)
 #Make Figure 2a
 ##You have to include state=identity when working with excel files
 #THE COLUMNS IT IS PULLING DATA FROM ARE JUST PLACE HOLDER
+#I THINK THE Y COLUMN SHOULD BE mett.dif as this is the differntially expressed cytosines
+#I THINK THAT  theme_minimal() + WILL MAKE THE CORRECT COLORS
+
 ```{r}
 fig_two_a <- (ggplot(data=raw_data, aes(raw_data[[1]], raw_data[[5]])) +
   geom_bar(stat='identity')+
