@@ -68,10 +68,10 @@ fig_two_a <- (ggplot(data=raw_data, aes(Type, meth.diff, fill=Context)) +
   #NOT WORKING
   theme(axis.text.x = element_text(angle = 45)) +
 
-  #this is to add the legend without a title
+  #the original figure has no legend in part a, minimal has correct color scheme
   theme_minimal()+
-  theme(legend.title = element_blank()))
-
+  theme(legend.position = "none"))
+  
 print(fig_two_a)
 pdf("Plots/fig_two_a.pdf")
 ```
