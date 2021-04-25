@@ -37,34 +37,48 @@ str(raw_data)
 colnames(raw_data)
 ```
 
+###We have to sort and combine data files somehow
+```{r}
+#Sort and rearrange the raw_data file
 
+```
 
 
 
 #
-#
-#
+
+#"Significant DMCs were identified between (a) low‐, mid‐ and high‐altitude samples (hereafter “altitudinal DMCs”)
+#(b) the three distance European samples (hereafter “spatial DMCs”), and (c) the two soil moisture treatments (hereafter “drought DMCs”)."
 #
 #For some reason it ws not recognizing column names, may need to use pivot_longer or tidyverse to correctly format data table, but got it plotting stuff
 #Feel free to change anything!
-#
-#NOTES BELOW
-#
 #
 
 
 #Make Figure 2a
 ##You have to include state=identity when working with excel files
 #THE COLUMNS IT IS PULLING DATA FROM ARE JUST PLACE HOLDER
-#I THINK THE Y COLUMN SHOULD BE mett.dif as this is the differntially expressed cytosines
-#I THINK THAT  theme_minimal() + WILL MAKE THE CORRECT COLORS
-
 ```{r}
-fig_two_a <- (ggplot(data=raw_data, aes(raw_data[[1]], raw_data[[5]])) +
-  geom_bar(stat='identity')+
-  labs(x = "Altitude", y = "Log10 DMC Count") +
+#Using column meth.diff (differentially expressed cytosines) for y axis and _____ for x-axis 
+
+#HAVE TO CHANGE COLUMN 2 TO SOMETHING ELSE
+fig_two_a <- (ggplot(data=raw_data, aes(raw_data[[2]], raw_data[[7]], fill=Context)) +
+                
+  #This is to work with excel files         
+  geom_bar(stat='identity') +
+    
+  #Add and format title
   ggtitle("Figure 2a") +
-  theme(plot.title = element_text(hjust = 0.5)))
+  theme(plot.title = element_text(hjust = 0.5)) +
+
+  #Add and format axis
+  labs(x = "Altitude", y = "Log10 DMC Count") +
+  #NOT WORKING
+  theme(axis.text.x = element_text(angle = 45)) +
+
+  #this is to add the legend without a title
+  theme_minimal()+
+  theme(legend.title = element_blank()))
 
 print(fig_two_a)
 pdf("Plots/fig_two_a.pdf")
@@ -73,11 +87,26 @@ pdf("Plots/fig_two_a.pdf")
 #Make Figure 2b
 #THE COLUMNS IT IS PULLING DATA FROM ARE JUST PLACE HOLDER
 ```{r}
-fig_two_b <- (ggplot(data=raw_data, aes(raw_data[[1]], raw_data[[6]])) +
+#Using column _______ for x axis and column _____ for y axis
+
+#HAVE TO CHANGE Both COLUMNs TO SOMETHING ELSE
+fig_two_b <- (ggplot(data=raw_data, aes(raw_data[[1]], raw_data[[6]], fill=Context)) +
+                
+  #This is to work with excel files         
   geom_bar(stat='identity') +
-  labs(x = "Altitude", y = "Δ Methylation") +
+    
+  #Add and format title
   ggtitle("Figure 2b") +
-  theme(plot.title = element_text(hjust = 0.5)))
+  theme(plot.title = element_text(hjust = 0.5)) +
+
+  #Add and format axis
+  labs(x = "Altitude", y = "Δ Methylation") +
+  #NOT WORKING
+  theme(axis.text.x = element_text(angle = 45)) +
+
+  #this is to add the legend without a title
+  theme_minimal()+
+  theme(legend.title = element_blank()))
 
 print(fig_two_b)
 pdf("Plots/fig_two_b.pdf")
@@ -87,11 +116,26 @@ pdf("Plots/fig_two_b.pdf")
 #Have to sort out CG, CHG and CHH
 #THE COLUMNS IT IS PULLING DATA FROM ARE JUST PLACE HOLDER
 ```{r}
-fig_six <- (ggplot(data=raw_data, aes(raw_data[[1]], raw_data[[7]]))+
+#Using column _______ for x axis and column _____ for y axis
+
+#HAVE TO CHANGE Both COLUMNs TO SOMETHING ELSE
+fig_six <- (ggplot(data=raw_data, aes(raw_data[[1]], raw_data[[6]], fill=Context)) +
+                
+  #This is to work with excel files and a boxplot         
   geom_boxplot(stat='identity') +
-  labs(x = "Loss/Gain Position", y = "DMC Density") +
+    
+  #Add and format title
   ggtitle("Figure 6, West to East") +
-  theme(plot.title = element_text(hjust = 0.5)))
+  theme(plot.title = element_text(hjust = 0.5)) +
+
+  #Add and format axis
+  labs(x = "Loss/Gain Position", y = "DMC Density") +
+  #NOT WORKING
+  theme(axis.text.x = element_text(angle = 45)) +
+
+  #this is to add the legend without a title
+  theme_minimal()+
+  theme(legend.title = element_blank()))
 
 print(fig_six)
 pdf("Plots/fig_six.pdf")
