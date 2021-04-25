@@ -43,26 +43,18 @@ colnames(raw_data)
 
 ```
 
-
-
-#
-
 #"Significant DMCs were identified between (a) low‐, mid‐ and high‐altitude samples (hereafter “altitudinal DMCs”)
 #(b) the three distance European samples (hereafter “spatial DMCs”), and (c) the two soil moisture treatments (hereafter “drought DMCs”)."
 #
-#For some reason it ws not recognizing column names, may need to use pivot_longer or tidyverse to correctly format data table, but got it plotting stuff
 #Feel free to change anything!
 #
 
 
 #Make Figure 2a
 ##You have to include state=identity when working with excel files
-#THE COLUMNS IT IS PULLING DATA FROM ARE JUST PLACE HOLDER
 ```{r}
-#Using column meth.diff (differentially expressed cytosines) for y axis and _____ for x-axis 
-
-#HAVE TO CHANGE COLUMN 2 TO SOMETHING ELSE
-fig_two_a <- (ggplot(data=raw_data, aes(raw_data[[2]], raw_data[[7]], fill=Context)) +
+#HAVE TO CHANGE X COLUMN TO SOMETHING ELSE
+fig_two_a <- (ggplot(data=raw_data, aes(Type, meth.diff, fill=Context)) +
                 
   #This is to work with excel files         
   geom_bar(stat='identity') +
@@ -90,7 +82,7 @@ pdf("Plots/fig_two_a.pdf")
 #Using column _______ for x axis and column _____ for y axis
 
 #HAVE TO CHANGE Both COLUMNs TO SOMETHING ELSE
-fig_two_b <- (ggplot(data=raw_data, aes(raw_data[[1]], raw_data[[6]], fill=Context)) +
+fig_two_b <- (ggplot(data=raw_data, aes(Type, meth.diff, fill=Context)) +
                 
   #This is to work with excel files         
   geom_bar(stat='identity') +
@@ -119,7 +111,7 @@ pdf("Plots/fig_two_b.pdf")
 #Using column _______ for x axis and column _____ for y axis
 
 #HAVE TO CHANGE Both COLUMNs TO SOMETHING ELSE
-fig_six <- (ggplot(data=raw_data, aes(raw_data[[1]], raw_data[[6]], fill=Context)) +
+fig_six <- (ggplot(data=raw_data, aes(Type, meth.diff, fill=Context)) +
                 
   #This is to work with excel files and a boxplot         
   geom_boxplot(stat='identity') +
