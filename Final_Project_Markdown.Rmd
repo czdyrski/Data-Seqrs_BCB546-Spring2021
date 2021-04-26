@@ -4,56 +4,113 @@ author: "Christopher_Zdyrski"
 date: "4/13/2021"
 output: html_document
 ---
-#This file is to make the RNASeq heatmap found in the Post et al. paper figure S.2F.
+#This file is to make the figures found in the Kort et al. paper figure 2a, 2b, and 6.
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #Install packages
 ```{r}
-
+install.packages("tidyverse")
 ```
 
 #Load in librarys
 ```{r}
 library(readxl)
+library(ggplot2)
+library(tidyverse)
 ```
 
 #Open data file
 ```{r}
-#This is the transcriptome we will align too
-Copy_of_DMCs_Dryad <- read_excel("Copy of DMCs_Dryad.xlsx")
+#This is the data file we will use
+raw_data <- read_excel("/Users/cecg/Desktop/Final_Project/DMCs_Dryad.csv")
+raw_data <- data.frame(raw_data)
 ```
 
 ###Look at dimensions of the files
 ```{r}
-#Analyze the transcriptome file
+#Analyze the raw_data file
 head(raw_data)
 dim(raw_data)
 str(raw_data)
+colnames(raw_data)
 ```
 
-#Make plot with ggplot, shows Heterozygosity across all the groups using the newly merged file
+###We have to sort and combine data files somehow
 ```{r}
-Heterozygosity_Across_Groups <- (ggplot(hom_het_added_column, aes(x = Group, fill = Heterozygotes)) +
-  geom_bar(position = "fill") +
-  labs(x = "Group", y = "Proportion") +
-  theme(axis.text.x = element_text(angle = 90)) +
-  ggtitle("Heterozygosity for all Groups") +
-  theme(plot.title = element_text(hjust = 0.5)))
+#Sort and rearrange the raw_data file
 
-pdf("Plots/Heterozygosity_Across_Groups.pdf")
-print(Heterozygosity_Across_Groups)
 ```
 
-#Make plot 2 aka Figure ###
+#"Significant DMCs were identified between (a) low‐, mid‐ and high‐altitude samples (hereafter “altitudinal DMCs”)
+#(b) the three distance European samples (hereafter “spatial DMCs”), and (c) the two soil moisture treatments (hereafter “drought DMCs”)."
+#
+#Feel free to change anything!
+#
+
+
+#Make Figure 2a
+##You have to include state=identity when working with excel files
 ```{r}
 
+# Updating bar graph for fig 2a. First line is for csv (which is how I made the plots)
 
+fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) + geom_bar(stat=, position=position_dodge(), colour="black") + scale_y_log10() + labs(x = "Type", y = "Log10 DMC Count") + theme_minimal() + theme(legend.position = "none") + ggtitle("Figure 2a") + theme(plot.title = element_text(hjust = 0.5))
+
+print(fig_2a)
+ggsave(filename = "Plots/fig_2a.png", device = "png")
+
+# Graph for .xlsx format
+
+fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) + geom_bar(stat="identity", position=position_dodge(), colour="black") + scale_y_log10() + labs(x = "Type", y = "Log10 DMC Count") + theme_minimal() + theme(legend.position = "none") + ggtitle("Figure 2a") + theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+#Make Figure 2b
+#THE COLUMNS IT IS PULLING DATA FROM ARE JUST PLACE HOLDER
+```{r}
+# Redid this graph, as we needed a boxplot and it was a bar plot
+
+
+### only works with CSV format
+fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)) + geom_boxplot(alpha = 1) + xlab('Type') + ggtitle("Figure 2b") + theme(plot.title=element_text(hjust = 0.5)) + labs(y = "Δ Methylation") + theme(legend.title = element_blank())
+
+print(fig_2b)
+ggsave(filename = "Plots/fig_2b.png", device = "png")
+
+
+### format that works with .xlsx format
+fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)) + geom_boxplot(stat='identity', alpha = 1) + xlab('Type') + ggtitle("Figure 2b") + theme(plot.title=element_text(hjust = 0.5)) + labs(y = "Δ Methylation") + theme(legend.title = element_blank())
 
 
 ```
 
+#Make Figure 6
+#Have to sort out CG, CHG and CHH
+#THE COLUMNS IT IS PULLING DATA FROM ARE JUST PLACE HOLDER
+```{r}
+#Using column _______ for x axis and column _____ for y axis
 
+#HAVE TO CHANGE Both COLUMNs TO SOMETHING ELSE
+fig_six <- (ggplot(data=raw_data, aes(Type, meth.diff, fill=Context)) +
+                
+  #This is to work with excel files and a boxplot         
+  geom_boxplot(stat='identity') +
+    
+  #Add and format title
+  ggtitle("Figure 6, West to East") +
+  theme(plot.title = element_text(hjust = 0.5)) +
 
+  #Add and format axis
+  labs(x = "Loss/Gain Position", y = "DMC Density") +
+  #NOT WORKING
+  theme(axis.text.x = element_text(angle = 45)) +
 
+  #this is to add the legend without a title
+  theme_minimal()+
+  theme(legend.title = element_blank()))
+
+print(fig_six)
+pdf("Plots/fig_six.pdf")
+```
