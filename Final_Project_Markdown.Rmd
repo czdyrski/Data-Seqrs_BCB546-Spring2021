@@ -24,7 +24,7 @@ library(tidyverse)
 #Open data file
 ```{r}
 #This is the data file we will use
-raw_data <- read_excel("Copy of DMCs_Dryad.xlsx")
+raw_data <- read_excel("/Users/cecg/Desktop/Final_Project/DMCs_Dryad.csv")
 raw_data <- data.frame(raw_data)
 ```
 
@@ -53,55 +53,37 @@ colnames(raw_data)
 #Make Figure 2a
 ##You have to include state=identity when working with excel files
 ```{r}
-#HAVE TO CHANGE X COLUMN TO SOMETHING ELSE
-fig_two_a <- (ggplot(data=raw_data, aes(Type, meth.diff, fill=Context)) +
-                
-  #This is to work with excel files         
-  geom_bar(stat='identity') +
-    
-  #Add and format title
-  ggtitle("Figure 2a") +
-  theme(plot.title = element_text(hjust = 0.5)) +
 
-  #Add and format axis
-  labs(x = "Altitude", y = "Log10 DMC Count") +
-  #NOT WORKING
-  theme(axis.text.x = element_text(angle = 45)) +
+# Updating bar graph for fig 2a. First line is for csv (which is how I made the plots)
 
-  #the original figure has no legend in part a, minimal has correct color scheme
-  theme_minimal()+
-  theme(legend.position = "none"))
-  
-print(fig_two_a)
-pdf("Plots/fig_two_a.pdf")
+fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) + geom_bar(stat=, position=position_dodge(), colour="black") + scale_y_log10() + labs(x = "Type", y = "Log10 DMC Count") + theme_minimal() + theme(legend.position = "none") + ggtitle("Figure 2a") + theme(plot.title = element_text(hjust = 0.5))
+
+print(fig_2a)
+ggsave(filename = "Plots/fig_2a.png", device = "png")
+
+# Graph for .xlsx format
+
+fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) + geom_bar(stat="identity", position=position_dodge(), colour="black") + scale_y_log10() + labs(x = "Type", y = "Log10 DMC Count") + theme_minimal() + theme(legend.position = "none") + ggtitle("Figure 2a") + theme(plot.title = element_text(hjust = 0.5))
+
 ```
 
 #Make Figure 2b
 #THE COLUMNS IT IS PULLING DATA FROM ARE JUST PLACE HOLDER
 ```{r}
-#Using column _______ for x axis and column _____ for y axis
+# Redid this graph, as we needed a boxplot and it was a bar plot
 
-#HAVE TO CHANGE Both COLUMNs TO SOMETHING ELSE
-fig_two_b <- (ggplot(data=raw_data, aes(Type, meth.diff, fill=Context)) +
-                
-  #This is to work with excel files         
-  geom_bar(stat='identity') +
-    
-  #Add and format title
-  ggtitle("Figure 2b") +
-  theme(plot.title = element_text(hjust = 0.5)) +
 
-  #Add and format axis
-  labs(x = "Altitude", y = "Δ Methylation") +
-  #NOT WORKING
-  theme(axis.text.x = element_text(angle = 45)) +
+### only works with CSV format
+fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)) + geom_boxplot(alpha = 1) + xlab('Type') + ggtitle("Figure 2b") + theme(plot.title=element_text(hjust = 0.5)) + labs(y = "Δ Methylation") + theme(legend.title = element_blank())
 
-  #this is to add the legend without a title
-  theme_minimal()+
-  theme(legend.title = element_blank()))
+print(fig_2b)
+ggsave(filename = "Plots/fig_2b.png", device = "png")
 
-print(fig_two_b)
-pdf("Plots/fig_two_b.pdf")
+
+### format that works with .xlsx format
+fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)) + geom_boxplot(stat='identity', alpha = 1) + xlab('Type') + ggtitle("Figure 2b") + theme(plot.title=element_text(hjust = 0.5)) + labs(y = "Δ Methylation") + theme(legend.title = element_blank())
+
+
 ```
 
 #Make Figure 6
