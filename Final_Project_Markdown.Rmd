@@ -4,24 +4,25 @@ author: "Christopher_Zdyrski"
 date: "4/13/2021"
 output: html_document
 ---
-#This file is to make the figures found in the Kort et al. paper figure 2a, 2b, and 6.
+#BCB_545_Final_Project
+##By Molly Bledsoe, Ceci Hodson, Nick Topping, and Chris Zdyrski
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Install packages
+###Install packages
 ```{r}
 install.packages("tidyverse")
 ```
 
-#Load in librarys
+###Load in librarys
 ```{r}
-library(readxl)
 library(ggplot2)
 library(tidyverse)
 ```
 
-#Open data file
+###Use this file to make figures 2a, 2b, and 6 found in the Kort et al. paper 
 ```{r}
 #This is the data file we will use
 raw_data <- read_excel("/Users/cecg/Desktop/Final_Project/DMCs_Dryad.csv")
