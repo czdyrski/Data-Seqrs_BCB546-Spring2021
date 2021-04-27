@@ -28,7 +28,7 @@ library(plyr)
 ###Use this file to make figures 2a, 2b, and 6 found in the Kort et al. paper 
 ```{r}
 #This is the data file we will use
-raw_data <- read_excel("DMCs_Dryad.csv")
+raw_data <- read_excel("BCB_545_Final_Project_DMCs_DRYAD.xlsx")
 raw_data <- data.frame(raw_data)
 ```
 
@@ -75,7 +75,7 @@ fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) +
 #Make Figure 2b
 ```{r}
 ### only works with CSV format
-fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)) +
+fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = X.meth.diff., fill=Context)) +
   geom_boxplot(alpha = 1) +
   xlab('Type') +
   ggtitle("Figure 2b") +
