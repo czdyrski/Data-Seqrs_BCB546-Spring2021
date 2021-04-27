@@ -132,7 +132,7 @@ ggsave(filename = "Plots/fig_2c.png", device = "png")
 #Mutate a new column to have percent loss/gains
 DMC_Data$diff_d <- DMC_Data$'East' - DMC_Data$'West/Low'
 
-#Select "Altitudinal" data from the "Type" column in the data file
+#Select "Spacial" data from the "Type" column in the data file
 Spatial_data <- subset(DMC_Data, Type == "Spatial")
 
 #Select the "Context" and "meth.diff" columns and put them in their own file
@@ -156,7 +156,7 @@ ggsave(filename = "Plots/fig_2d.png", device = "png")
 #Mutate a new column to have percent loss/gains
 DMC_Data$diff_e <- DMC_Data$'Mid_Dry' - DMC_Data$'Mid_Moist'
 
-#Select "Altitudinal" data from the "Type" column in the data file
+#Select "Spatial" data from the "Type" column in the data file
 Spatial_data <- subset(DMC_Data, Type == "Spatial")
 
 #Select the "Context" and "meth.diff" columns and put them in their own file
