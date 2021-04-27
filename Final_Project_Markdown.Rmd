@@ -38,19 +38,6 @@ str(raw_data)
 colnames(raw_data)
 ```
 
-###We have to sort and combine data files somehow
-```{r}
-#Sort and rearrange the raw_data file
-
-```
-
-#"Significant DMCs were identified between (a) low‐, mid‐ and high‐altitude samples (hereafter “altitudinal DMCs”)
-#(b) the three distance European samples (hereafter “spatial DMCs”), and (c) the two soil moisture treatments (hereafter “drought DMCs”)."
-#
-#Feel free to change anything!
-#
-
-
 #Make Figure 2a
 ##You have to include state=identity when working with excel files
 ```{r}
@@ -83,7 +70,6 @@ ggsave(filename = "Plots/fig_2b.png", device = "png")
 
 ### format that works with .xlsx format
 fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)) + geom_boxplot(stat='identity', alpha = 1) + xlab('Type') + ggtitle("Figure 2b") + theme(plot.title=element_text(hjust = 0.5)) + labs(y = "Δ Methylation") + theme(legend.title = element_blank())
-
 
 ```
 
