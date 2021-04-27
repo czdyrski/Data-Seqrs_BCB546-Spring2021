@@ -14,18 +14,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ###Install packages
 ```{r}
 install.packages("tidyverse")
+install.packages("plyr")
 ```
 
 ###Load in librarys
 ```{r}
 library(ggplot2)
 library(tidyverse)
+library(readxl)
+library(plyr)
 ```
 
 ###Use this file to make figures 2a, 2b, and 6 found in the Kort et al. paper 
 ```{r}
 #This is the data file we will use
-raw_data <- read_excel("/Users/cecg/Desktop/Final_Project/DMCs_Dryad.csv")
+raw_data <- read_excel("DMCs_Dryad.csv")
 raw_data <- data.frame(raw_data)
 ```
 
@@ -44,60 +47,122 @@ colnames(raw_data)
 
 # Updating bar graph for fig 2a. First line is for csv (which is how I made the plots)
 
-fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) + geom_bar(stat=, position=position_dodge(), colour="black") + scale_y_log10() + labs(x = "Type", y = "Log10 DMC Count") + theme_minimal() + theme(legend.position = "none") + ggtitle("Figure 2a") + theme(plot.title = element_text(hjust = 0.5))
+fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) +
+  geom_bar(stat=, position=position_dodge(), colour="black") +
+  scale_y_log10() +
+  labs(x = "Type", y = "Log10 DMC Count") +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  ggtitle("Figure 2a") +
+  theme(plot.title = element_text(hjust = 0.5))
 
 print(fig_2a)
 ggsave(filename = "Plots/fig_2a.png", device = "png")
 
 # Graph for .xlsx format
 
-fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) + geom_bar(stat="identity", position=position_dodge(), colour="black") + scale_y_log10() + labs(x = "Type", y = "Log10 DMC Count") + theme_minimal() + theme(legend.position = "none") + ggtitle("Figure 2a") + theme(plot.title = element_text(hjust = 0.5))
+fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) +
+  geom_bar(stat="identity", position=position_dodge(), colour="black") +
+  scale_y_log10() +
+  labs(x = "Type", y = "Log10 DMC Count") +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  ggtitle("Figure 2a") +
+  theme(plot.title = element_text(hjust = 0.5))
 
 ```
 
 #Make Figure 2b
-#THE COLUMNS IT IS PULLING DATA FROM ARE JUST PLACE HOLDER
 ```{r}
-# Redid this graph, as we needed a boxplot and it was a bar plot
-
-
 ### only works with CSV format
-fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)) + geom_boxplot(alpha = 1) + xlab('Type') + ggtitle("Figure 2b") + theme(plot.title=element_text(hjust = 0.5)) + labs(y = "Δ Methylation") + theme(legend.title = element_blank())
+fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)) +
+  geom_boxplot(alpha = 1) +
+  xlab('Type') +
+  ggtitle("Figure 2b") +
+  theme(plot.title=element_text(hjust = 0.5)) +
+  labs(y = "Δ Methylation") +
+  theme(legend.title = element_blank())
 
 print(fig_2b)
 ggsave(filename = "Plots/fig_2b.png", device = "png")
 
 
 ### format that works with .xlsx format
-fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)) + geom_boxplot(stat='identity', alpha = 1) + xlab('Type') + ggtitle("Figure 2b") + theme(plot.title=element_text(hjust = 0.5)) + labs(y = "Δ Methylation") + theme(legend.title = element_blank())
+fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)) +
+  geom_boxplot(stat='identity', alpha = 1) + xlab('Type') +
+  ggtitle("Figure 2b") +
+  theme(plot.title=element_text(hjust = 0.5)) +
+  labs(y = "Δ Methylation") +
+  theme(legend.title = element_blank())
 
 ```
 
-#Make Figure 6
-#Have to sort out CG, CHG and CHH
-#THE COLUMNS IT IS PULLING DATA FROM ARE JUST PLACE HOLDER
+#Make Figure 2c
 ```{r}
-#Using column _______ for x axis and column _____ for y axis
 
-#HAVE TO CHANGE Both COLUMNs TO SOMETHING ELSE
-fig_six <- (ggplot(data=raw_data, aes(Type, meth.diff, fill=Context)) +
-                
-  #This is to work with excel files and a boxplot         
-  geom_boxplot(stat='identity') +
-    
-  #Add and format title
-  ggtitle("Figure 6, West to East") +
-  theme(plot.title = element_text(hjust = 0.5)) +
+DMC_Data <- read_csv(file = "Copy_of_DMCs_Dryad.csv")
 
-  #Add and format axis
-  labs(x = "Loss/Gain Position", y = "DMC Density") +
-  #NOT WORKING
-  theme(axis.text.x = element_text(angle = 45)) +
+#Mutate a new column to have percent loss/gains
+DMC_Data$diff <- DMC_Data$'High' - DMC_Data$'West/Low'
 
-  #this is to add the legend without a title
-  theme_minimal()+
-  theme(legend.title = element_blank()))
+#Select "Altitudinal" data from the "Type" column in the data file
+Altitudinal_data <- subset(DMC_Data, Type == "Altitudinal")
 
-print(fig_six)
-pdf("Plots/fig_six.pdf")
+#Select the "Context" and "meth.diff" columns and put them in their own file
+context_and_methdiff <- select(Altitudinal_data, "Context", "meth.diff", "diff")
+
+#Plot Figure 2C
+Figure_2C <- ggplot(context_and_methdiff, aes(x=diff, color=Context)) +
+  geom_density()+labs(title= "Low to High Altitude", y="DMC Density", x = element_blank()) +
+  geom_vline(xintercept = 0, linetype="dotted") +
+  theme(legend.title = element_blank())
+
+print(Figure_2C)
+ggsave(filename = "Plots/fig_2c.png", device = "png")
+```
+
+
+#Make Figure 2d
+```{r}
+#Mutate a new column to have percent loss/gains
+DMC_Data$diff_d <- DMC_Data$'East' - DMC_Data$'West/Low'
+
+#Select "Altitudinal" data from the "Type" column in the data file
+Spatial_data <- subset(DMC_Data, Type == "Spatial")
+
+#Select the "Context" and "meth.diff" columns and put them in their own file
+context_and_methdiff <- select(Spatial_data, "Context", "meth.diff", "diff_d")
+
+#Plot Figure 2d
+Figure_2d <- ggplot(context_and_methdiff, aes(x=diff_d, color=Context)) +
+  geom_density()+labs(title= "West to East", y="DMC Density", x = element_blank()) +
+  geom_vline(xintercept = 0, linetype="dotted") +
+  theme(legend.title = element_blank()) +
+  theme(legend.position = "none")
+
+print(Figure_2d)
+ggsave(filename = "Plots/fig_2d.png", device = "png")
+```
+
+
+#Make Figure 2e
+```{r}
+#Mutate a new column to have percent loss/gains
+DMC_Data$diff_e <- DMC_Data$'Mid_Dry' - DMC_Data$'Mid_Moist'
+
+#Select "Altitudinal" data from the "Type" column in the data file
+Spatial_data <- subset(DMC_Data, Type == "Spatial")
+
+#Select the "Context" and "meth.diff" columns and put them in their own file
+context_and_methdiff <- select(Spatial_data, "Context", "meth.diff", "diff_e")
+
+#Plot Figure 2e
+Figure_2e <- ggplot(context_and_methdiff, aes(x=diff_e, color=Context)) +
+  geom_density()+labs(title= "Moist to Dry soil", y="DMC Density", x = element_blank()) +
+  geom_vline(xintercept = 0, linetype="dotted") +
+  theme(legend.title = element_blank() +
+  theme(legend.position = "none"))
+
+print(Figure_2e)
+ggsave(filename = "Plots/fig_2e.png", device = "png")
 ```
