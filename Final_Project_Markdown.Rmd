@@ -136,9 +136,11 @@ context_and_methdiff <- select(Altitudinal_data, "Context", "meth.diff", "diff")
 
 #Plot Figure 2d
 Figure_2d <- ggplot(context_and_methdiff, aes(x=diff, color=Context)) +
-  geom_density()+labs(title= "Low to High Altitude", y="DMC Density", x = element_blank()) +
+  geom_density()+labs(title= "West to East", y="DMC Density", x = element_blank()) +
   geom_vline(xintercept = 0, linetype="dotted") +
-  theme(legend.title = element_blank())
+  theme(legend.title = element_blank()) +
+  theme(legend.position = "none")
+
 
 print(Figure_2d)
 ggsave(filename = "Plots/fig_2d.png", device = "png")
@@ -159,9 +161,10 @@ context_and_methdiff <- select(Altitudinal_data, "Context", "meth.diff", "diff")
 
 #Plot Figure 2e
 Figure_2C <- ggplot(context_and_methdiff, aes(x=diff, color=Context)) +
-  geom_density()+labs(title= "Low to High Altitude", y="DMC Density", x = element_blank()) +
+  geom_density()+labs(title= "Moist to Dry soil", y="DMC Density", x = element_blank()) +
   geom_vline(xintercept = 0, linetype="dotted") +
-  theme(legend.title = element_blank())
+  theme(legend.title = element_blank() +
+  theme(legend.position = "none"))
 
 print(Figure_2e)
 ggsave(filename = "Plots/fig_2e.png", device = "png")
