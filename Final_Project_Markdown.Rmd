@@ -54,6 +54,7 @@ fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) +
   theme_minimal() +
   theme(legend.position = "none") +
   ggtitle("Figure 2a") +
+  theme(panel.background = element_blank()) +
   theme(plot.title = element_text(hjust = 0.5))
 
 print(fig_2a)
@@ -68,6 +69,7 @@ fig_2a = ggplot(data=raw_data, aes(x=Type, fill=Context)) +
   theme_minimal() +
   theme(legend.position = "none") +
   ggtitle("Figure 2a") +
+  theme(panel.background = element_blank()) +
   theme(plot.title = element_text(hjust = 0.5))
 
 ```
@@ -81,6 +83,7 @@ fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = X.meth.diff., fill=Conte
   ggtitle("Figure 2b") +
   theme(plot.title=element_text(hjust = 0.5)) +
   labs(y = "Δ Methylation") +
+  theme(panel.background = element_blank()) +
   theme(legend.title = element_blank())
 
 print(fig_2b)
@@ -93,6 +96,7 @@ fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)
   ggtitle("Figure 2b") +
   theme(plot.title=element_text(hjust = 0.5)) +
   labs(y = "Δ Methylation") +
+  theme(panel.background = element_blank()) +
   theme(legend.title = element_blank())
 
 ```
@@ -115,6 +119,7 @@ context_and_methdiff <- select(Altitudinal_data, "Context", "meth.diff", "diff")
 Figure_2C <- ggplot(context_and_methdiff, aes(x=diff, color=Context)) +
   geom_density()+labs(title= "Low to High Altitude", y="DMC Density", x = element_blank()) +
   geom_vline(xintercept = 0, linetype="dotted") +
+  theme(panel.background = element_blank()) +
   theme(legend.title = element_blank())
 
 print(Figure_2C)
@@ -138,6 +143,7 @@ Figure_2d <- ggplot(context_and_methdiff, aes(x=diff_d, color=Context)) +
   geom_density()+labs(title= "West to East", y="DMC Density", x = element_blank()) +
   geom_vline(xintercept = 0, linetype="dotted") +
   theme(legend.title = element_blank()) +
+  theme(panel.background = element_blank()) +
   theme(legend.position = "none")
 
 print(Figure_2d)
@@ -160,8 +166,9 @@ context_and_methdiff <- select(Spatial_data, "Context", "meth.diff", "diff_e")
 Figure_2e <- ggplot(context_and_methdiff, aes(x=diff_e, color=Context)) +
   geom_density()+labs(title= "Moist to Dry soil", y="DMC Density", x = element_blank()) +
   geom_vline(xintercept = 0, linetype="dotted") +
-  theme(legend.title = element_blank() +
-  theme(legend.position = "none"))
+  theme(legend.title = element_blank()) +
+  theme(panel.background = element_blank()) +
+  theme(legend.position = "none")
 
 print(Figure_2e)
 ggsave(filename = "Plots/fig_2e.png", device = "png")
