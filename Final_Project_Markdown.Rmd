@@ -158,10 +158,10 @@ ggsave(filename = "Plots/fig_2d.png", device = "png")
 DMC_Data_csv$diff_e <- DMC_Data_csv$'Mid_Dry' - DMC_Data_csv$'Mid_Moist'
 
 #Select "Spatial" data from the "Type" column in the data file
-Spatial_data <- subset(DMC_Data_csv, Type == "Spatial")
+Drought_data <- subset(DMC_Data_csv, Type == "Drought")
 
 #Select the "Context" and "meth.diff" columns and put them in their own file
-context_and_methdiff_e <- select(Spatial_data, "Context", "meth.diff", "diff_e")
+context_and_methdiff_e <- select(Drought_data, "Context", "meth.diff", "diff_e")
 
 #Plot Figure 2e
 Figure_2e <- ggplot(context_and_methdiff_e, aes(x=diff_e, color=Context)) +
