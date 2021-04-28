@@ -7,7 +7,7 @@ We will be recreating analysis from a Kort et al paper in 2020 :https://onlineli
 
 We recreated all parts of Figure 2.
 
-All of the raw data is found here :
+All of the raw data is found here : https://datadryad.org/stash/dataset/doi:10.5061/dryad.zs7h44j6r
 
 Github repository: https://github.com/czdyrski/Final_Project.git
 
