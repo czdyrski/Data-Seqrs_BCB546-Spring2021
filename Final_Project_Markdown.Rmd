@@ -105,8 +105,6 @@ fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)
 ```{r}
 DMC_Data_csv <- read_csv(file = "BCB_545_Final_Project_DMCs_Dryad.csv")
 
-DMC_Data <- read_csv(file = "Copy_of_DMCs_Dryad.csv")
-
 #Mutate a new column to have percent loss/gains
 DMC_Data_csv$diff <- DMC_Data_csv$'High' - DMC_Data_csv$'West/Low'
 
