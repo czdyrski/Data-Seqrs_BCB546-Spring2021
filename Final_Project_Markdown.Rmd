@@ -84,6 +84,7 @@ fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = X.meth.diff., fill=Conte
   theme(plot.title=element_text(hjust = 0.5)) +
   labs(y = "Δ Methylation") +
   theme(panel.background = element_blank()) +
+  theme(legend.position = "none") +
   theme(legend.title = element_blank())
 
 print(fig_2b)
