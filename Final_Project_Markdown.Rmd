@@ -103,14 +103,15 @@ fig_2b <- ggplot(raw_data, aes(x = as.factor(Type), y = meth.diff, fill=Context)
 
 #Make Figure 2c
 ```{r}
+DMC_Data_csv <- read_csv(file = "BCB_545_Final_Project_DMCs_Dryad.csv")
 
 DMC_Data <- read_csv(file = "Copy_of_DMCs_Dryad.csv")
 
 #Mutate a new column to have percent loss/gains
-DMC_Data$diff <- DMC_Data$'High' - DMC_Data$'West/Low'
+DMC_Data_csv$diff <- DMC_Data_csv$'High' - DMC_Data_csv$'West/Low'
 
 #Select "Altitudinal" data from the "Type" column in the data file
-Altitudinal_data <- subset(DMC_Data, Type == "Altitudinal")
+Altitudinal_data <- subset(DMC_Data_csv, Type == "Altitudinal")
 
 #Select the "Context" and "meth.diff" columns and put them in their own file
 context_and_methdiff_c <- select(Altitudinal_data, "Context", "meth.diff", "diff")
@@ -129,11 +130,13 @@ ggsave(filename = "Plots/fig_2c.png", device = "png")
 
 #Make Figure 2d
 ```{r}
+DMC_Data_csv <- read_csv(file = "BCB_545_Final_Project_DMCs_Dryad.csv")
+
 #Mutate a new column to have percent loss/gains
-DMC_Data$diff_d <- DMC_Data$'East' - DMC_Data$'West/Low'
+DMC_Data_csv$diff_d <- DMC_Data_csv$'East' - DMC_Data_csv$'West/Low'
 
 #Select "Spacial" data from the "Type" column in the data file
-Spatial_data <- subset(DMC_Data, Type == "Spatial")
+Spatial_data <- subset(DMC_Data_csv, Type == "Spatial")
 
 #Select the "Context" and "meth.diff" columns and put them in their own file
 context_and_methdiff_d <- select(Spatial_data, "Context", "meth.diff", "diff_d")
@@ -154,10 +157,10 @@ ggsave(filename = "Plots/fig_2d.png", device = "png")
 #Make Figure 2e
 ```{r}
 #Mutate a new column to have percent loss/gains
-DMC_Data$diff_e <- DMC_Data$'Mid_Dry' - DMC_Data$'Mid_Moist'
+DMC_Data_csv$diff_e <- DMC_Data_csv$'Mid_Dry' - DMC_Data_csv$'Mid_Moist'
 
 #Select "Spatial" data from the "Type" column in the data file
-Spatial_data <- subset(DMC_Data, Type == "Spatial")
+Spatial_data <- subset(DMC_Data_csv, Type == "Spatial")
 
 #Select the "Context" and "meth.diff" columns and put them in their own file
 context_and_methdiff_e <- select(Spatial_data, "Context", "meth.diff", "diff_e")
