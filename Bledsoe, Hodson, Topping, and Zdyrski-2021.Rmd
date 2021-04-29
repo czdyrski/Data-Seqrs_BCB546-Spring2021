@@ -8,9 +8,12 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#Original Paper Overview
-##Ecological divergence of wild strawberry DNA methylation patterns at distinct spatial scales
-###By: Hanne De Kor,  Bart Panis, Dieter Deforce, Filip Van Nieuwerburgh Ollivier Honnay
+
+## Original Paper Overview
+
+## Ecological divergence of wild strawberry DNA methylation patterns at distinct spatial scales
+
+### By: Hanne De Kor,  Bart Panis, Dieter Deforce, Filip Van Nieuwerburgh Ollivier Honnay
 
 #### This paper investigated whether or not epigenetic variation contributes to population structure and adaptive evolution. It was once thought that genetic variation was the source of which plants utilize to evolve. However, epigenetic changes account for a large proportion of phenotypic variation compared to genetic variation. Epigenetic variation refers to any heritable phenotypic change that doesn't involve altering the DNA sequence.
 
@@ -19,17 +22,22 @@ knitr::opts_chunk$set(echo = TRUE)
 #### Support is growing for epigenetic variation as a force involved in adaptive evolution. Previous studies have shown epigenetic diversity to be beneficial when genetic diversity itself is low. This is normally a result of a founder or bottleneck event. In scenarios where selection pressures lower genetic diversity rapidly, epigenetic variation could be crucial in the persistence of that population.  
 
 ## Methods
+
 #### The researchers took seeds from five different Arabidopsis plants across three distinct geographical locations with different spatial and altitudinal locations and different moisture levels. DNA was obtained from the leaves of the second generation plants to investigate differentially methylated cytosines (DMCs) across locations. After sequencing, DMC's were compared across groups to find any significant differences. 
 
-#Technical Details and Replication of Analyses
+# Technical Details and Replication of Analyses
+
 #### We recreated the analysis from a paper by Kort et al in 2020 about DNA methylation in strawberries. We focused on Figure 2 and recreated all parts (a-e). 
 
-##Workflow
-####Data was downloaded from Dryad as an .xlsx document. They had their data in two different locations, and one of those files had only 30,000 of over 80,000 actual rows. All code was written in R. Some data had to be manipulated into new columns in order to recreate the figures. All figures were made using the ggplot package. 
+## Workflow
 
-##All of the raw data is found here: https://datadryad.org/stash/dataset/doi:10.5061/dryad.zs7h44j6r
-##Our GitHub repository can be found here: Github repository: https://github.com/czdyrski/Final_Project.git
-##All plots created are in the Github repository in the "Plots" folder as .png files
+#### Data was downloaded from Dryad as an .xlsx document. They had their data in two different locations, and one of those files had only 30,000 of over 80,000 actual rows. All code was written in R. Some data had to be manipulated into new columns in order to recreate the figures. All figures were made using the ggplot package. 
+
+#### All of the raw data is found here: https://datadryad.org/stash/dataset/doi:10.5061/dryad.zs7h44j6r
+
+#### Our GitHub repository can be found here: Github repository: https://github.com/czdyrski/Final_Project.git
+
+#### All plots created are in the Github repository in the "Plots" folder as .png files
 
 
-#Summary of our Replication
+# Summary of our Replication
