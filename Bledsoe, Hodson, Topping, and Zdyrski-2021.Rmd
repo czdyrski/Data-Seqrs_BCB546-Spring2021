@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Technical Details and Replication of Analyses
 
-#### We recreated the analysis from a paper by Kort et al in 2020 about DNA methylation in strawberries. We focused on Figure 2 and recreated all parts (a-e). 
+#### We recreated the analysis from a paper by Kort et al in 2020 about DNA methylation in strawberries. We focused on Figure 2 and recreated all parts (a-e).
 
 ## Workflow
 
@@ -41,3 +41,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 # Summary of our Replication
+#### We were able to replicate figure 2 a,b,c,d, and e. The data was very reproducible it was provided in an excel format. However it seems that some differences arise in the final formating, such that in figure E data is not present all of the way to the 100% scale bar so our graph stops early where they inferred the rest of it. Overall, the replication of data was straight forward and our graphs were well illustrated.
